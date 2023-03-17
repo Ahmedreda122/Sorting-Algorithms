@@ -15,7 +15,7 @@ int main()
   quickSort(arr, 0, size - 1);
 
   cout << '{';
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < size; ++i)
   {
     if (i == size - 1)
     {
@@ -29,16 +29,17 @@ int main()
 template <typename type, size_t size>
 void quickSort(type (&arr)[size], int start, int end)
 {
-  if (start >= end)   
+  // Checking that the array is not a single element
+  if (start < end)
   {
-    return;
-  }
-  else
-  {
+    // Determine the right Pivot position
     int pivot = partition(arr, start, end);
+    // Run the same process on left part that lower than the pivot.
     quickSort(arr, start, pivot - 1);
+    // Run the same process on right part that higher than the pivot.
     quickSort(arr, pivot + 1, end);
   }
+  // Else if the array is a single element then return
 }
  
 //  start => cursor to start of the array
@@ -75,3 +76,4 @@ int partition(type (&arr)[size], int start, int end)
   // Returing the position of pivot
   return i;
 }
+

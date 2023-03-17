@@ -1,9 +1,9 @@
 #include <iostream>
 
 using namespace std;
+
 template <typename type, size_t size>
 void bubbleSort(type (&arr)[size]);
-
 
 int main()
 {
@@ -13,7 +13,7 @@ int main()
 
   int size = sizeof(arr) / sizeof(arr[0]);
   cout << '{';
-  for (int i = 0; i < size; i++)
+  for (int i = 0; i < size; ++i)
   {
     if (i == size - 1)
     {
@@ -29,7 +29,7 @@ void bubbleSort(type (&arr)[size])
 {
   // Counter to check if the array is already sorted
   int counter = 0;
-  for (int i = 0; i < size - 1; i++)
+  for (int i = 0; i < size - 1; ++i)
   {
     /*
       Iteration to move element to their right place
@@ -40,7 +40,7 @@ void bubbleSort(type (&arr)[size])
       if (arr[j] > arr[j + 1])
       {
         swap(arr[j], arr[j + 1]);
-        counter++;
+        ++counter;
       }
     }
     /*
