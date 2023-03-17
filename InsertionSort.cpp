@@ -10,11 +10,17 @@ int main()
   int arr[7] = {10, 30, 25, 20, 60, 40, 50};
   insertionSort(arr);
 
-  for (int i = 0; i < 6; i++)
+  int size = sizeof(arr) / sizeof(arr[0]);
+  cout << '{';
+  for (int i = 0; i < size; i++)
   {
+    if (i == size - 1)
+    {
+      cout << arr[i] << "}\n";
+      break;
+    }
     cout << arr[i] << ", ";
   }
-  cout << endl;
 }
 
 // 0    1    2    3  4  5  6 
