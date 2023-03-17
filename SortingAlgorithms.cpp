@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <time.h>
 
 using namespace std;
@@ -20,25 +21,9 @@ namespace sort
       cout << arr[i] << ", ";
     }
   }
-  //------------------------**QUICK SORT**-----------------------------------
-  template <typename type, size_t size>
-  int partition(type (&arr)[size], int start, int end);
+
   
-  template <typename type, size_t size>
-  void quickSort(type (&arr)[size], int start, int end)
-  {
-    // Checking that the array is not a single element
-    if (start < end)
-    {
-      // Determine the right Pivot position
-      int pivot = partition(arr, start, end);
-      // Run the same process on left part that lower than the pivot.
-      quickSort(arr, start, pivot - 1);
-      // Run the same process on right part that higher than the pivot.
-      quickSort(arr, pivot + 1, end);
-    }
-    // Else if the array is a single element then return
-  }
+  //------------------------**QUICK SORT**-----------------------------------
 
   //  start => cursor to start of the array
   //  end => cursor to the end of the array
@@ -75,6 +60,23 @@ namespace sort
     return i;
   }
 
+  template <typename type, size_t size>
+  void quickSort(type (&arr)[size], int start, int end)
+  {
+    // Checking that the array is not a single element
+    if (start < end)
+    {
+      // Determine the right Pivot position
+      int pivot = partition(arr, start, end);
+      // Run the same process on left part that lower than the pivot.
+      quickSort(arr, start, pivot - 1);
+      // Run the same process on right part that higher than the pivot.
+      quickSort(arr, pivot + 1, end);
+    }
+    // Else if the array is a single element then return
+  }
+
+
   //------------------------**BUBBLE SORT**-----------------------------------
   template <typename type, size_t size>
   void bubbleSort(type (&arr)[size])
@@ -107,5 +109,50 @@ namespace sort
     }
   }
 
+  //------------------------**COUNTING SORT**-----------------------------------
+  template <typename type, size_t size>
+  void countingSort(type (&arr)[size])
+  {
+    // Making Cumulative frequency array for Elements from 0 to max
+    int Max = *max_element(arr, arr + size) + 1;
+    int cFreq[Max];
+    int sorted[size];
+
+    // Filled frequencies array with zeros
+    for (int i = 0; i < Max; ++i)
+    {
+      cFreq[i] = 0;
+    }
+
+    // Intialize frequencies of "arr" in cFreq array 
+    // (Index (Element) => value (frequency))
+    for (int j = 0; j < size; ++j)
+    {
+      // Increment frequency of arr[i] by one
+      ++cFreq[arr[j]];
+    }
+
+    for (int k = 1; k < Max; ++k)
+    {
+      // Transfer frequency into Cumulative Frequency array
+      // (Index (Element) => value (its right order in "arr" => its index = Cfreq - 1))
+      cFreq[k] += cFreq[k - 1];
+    }
+
+    for (int i = 0; i < size; ++i)
+    {
+      // Get Cumulative Frequency (Element's Right Index - 1) of the Element arr[i] 
+      // Then put the element value in the right position (its Cumulative frequncy - 1)
+      sorted[cFreq[arr[i]] - 1] = arr[i];
+      // Update the value of the Cumulative Frequency of the Element arr[i]
+      --cFreq[arr[i]];
+    }
+    
+    // Copy sorted array into "arr" 
+    for (int i = 0; i < size; ++i)
+    {
+      arr[i] = sorted[i];
+    }
+  }
 }
 
