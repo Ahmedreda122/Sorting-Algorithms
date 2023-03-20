@@ -154,5 +154,87 @@ namespace sort
       arr[i] = sorted[i];
     }
   }
+
+
+  //------------------------**SHELL SORT**-----------------------------------
+  template <typename T, size_t Size>
+  void shellSort(T (&Array)[Size])
+  {
+    for (int i = Size / 2; i > 0; i /= 2) // loop while decreasing distance between elements (gap)
+    {
+      for (int j = 0; j < Size; j += i) // loop within the distance between elements (gap)
+      {
+        // set the current element as a temporary value
+        T Temp = Array[j];
+        // move the elements within each gap, until the temporary value is in its correct position
+        for (int z = j; z >= i && Array[z - i] > Temp; z -= i)
+        {
+            // if it's greater than the temporary value,
+            // swap the current element with the element in the previous gap
+            swap(Array[z], Array[z - i]);
+        }
+      }
+    }
+  }
+
+  //------------------------**MERGE SORT**-----------------------------------
+  template <typename T>
+  void merge(T LeftArray[], T RightArray[], T Array[], int LeftArraySize, int RightArraySize, int ArraySize)
+  {
+      int LeftArrayIndex = 0, RightArrayIndex = 0, ArrayIndex = 0;
+      // Check the Conditions For Merging
+      while (LeftArrayIndex < LeftArraySize && RightArrayIndex < RightArraySize && ArrayIndex < ArraySize)
+      {
+          if (LeftArray[LeftArrayIndex] < RightArray[RightArrayIndex])
+          {
+              Array[ArrayIndex] = LeftArray[LeftArrayIndex++];
+          }
+          else
+          {
+              Array[ArrayIndex] = RightArray[RightArrayIndex++];
+          }
+          ArrayIndex++;
+      }
+      // Copy the remaining elements of LeftArray
+      while (LeftArrayIndex < LeftArraySize && ArrayIndex < ArraySize)
+      {
+          Array[ArrayIndex] = LeftArray[LeftArrayIndex++];
+          ArrayIndex++;
+      }
+      // Copy the remaining elements of RightArray
+      while (RightArrayIndex < RightArraySize && ArrayIndex < ArraySize)
+      {
+          Array[ArrayIndex] = RightArray[RightArrayIndex++];
+          ArrayIndex++;
+      }
+  }
+
+  template <typename T>
+  void mergeSort(T Array[], int ArraySize)
+  {
+      if (ArraySize <= 1) // Base Case
+      {
+          return;
+      }
+
+      int Middle = ArraySize / 2;
+      T LeftArray[Middle];
+      T RightArray[ArraySize - Middle];
+
+      for (int i = 0; i < ArraySize; i++) // Copy Elements From (Array) to (Left/Right Array)
+      {
+          if (i < Middle) // Copy To Left Array
+          {
+              LeftArray[i] = Array[i];
+          }
+          else // Copy To Right Array
+          {
+              RightArray[i - Middle] = Array[i]; // i-Middle -> to make it start from 0
+          }
+      }
+      mergeSort(LeftArray, Middle);
+      mergeSort(RightArray, ArraySize - Middle);
+      merge(LeftArray, RightArray, Array, Middle, ArraySize - Middle, ArraySize);
+  }
 }
 

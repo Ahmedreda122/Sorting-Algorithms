@@ -18,7 +18,9 @@ int main()
   //sort::countingSort(arr);
  // sort::bubbleSort(arr);
 
-  sort::quickSort(arr, 0, size - 1);
+  // sort::quickSort(arr, 0, size - 1);
+  // sort::shellSort(arr);
+  sort::mergeSort(arr, size);
   sort::printarr(arr);
   //clock_t time = clock() - before;
   //struct tm* time1 = localtime(&t);
@@ -30,6 +32,7 @@ void intializeArr(type (&arr)[size])
 {
   for (int i = 0; i < size; ++i)
   {
+    // Initialize each element in the array with a random value from 0 to 99
     arr[i] = rand() % 100;
   }
 } 

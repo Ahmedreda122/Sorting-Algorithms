@@ -1,14 +1,14 @@
 #include <iostream>
 using namespace std;
 
-template <typename T>
-void ShellSort(T Array[], int Size);
+template <typename T, size_t Size>
+void ShellSort(T (&Array)[Size]);
 
 int main()
 {
     char arr[] = {'4', '7', '5', '2', '5', '3', '8', '1', '6'};
     int size = sizeof(arr) / sizeof(arr[0]);
-    ShellSort(arr, size);
+    ShellSort(arr);
     for (int i = 0; i < size; i++)
     {
         if (i == (size - 1))
@@ -20,8 +20,8 @@ int main()
     }
 }
 
-template <typename T>
-void ShellSort(T Array[], int Size)
+template <typename T, size_t Size>
+void ShellSort(T (&Array)[Size])
 {
     for (int i = Size / 2; i > 0; i /= 2) // loop while decreasing distance between elements (gap)
     {
