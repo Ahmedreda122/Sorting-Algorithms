@@ -28,7 +28,7 @@ int main()
 
 template <typename type, size_t size>
 void quickSort(type (&arr)[size], int start, int end)
-{
+{   
   // Checking that the array is not a single element
   if (start < end)
   {
