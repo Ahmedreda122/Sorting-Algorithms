@@ -31,7 +31,7 @@ int main()
 template <typename type, size_t size>
 void insertionSort(type (&arr)[size])
 {
-  int currentIndex, j;
+  int currentIndex, j, current;
 
   for (int i = 1; i < size; i++)
   {
