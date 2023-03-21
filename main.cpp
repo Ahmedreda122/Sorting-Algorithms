@@ -61,19 +61,17 @@ int main()
     before = clock();
     if (choice == "1")
     {
-      return 1;
-      // sort::insertionSort(arr);
-      // clock_t time = clock() - before;
-      // sort::printarr(arr);
-      // printf ("This Algorithm take (%.8lf ms).\n", ((double)time/CLOCKS_PER_SEC) * 1000);
+      sort::insertionSort(arr);
+      clock_t time = clock() - before;
+      sort::printarr(arr);
+      printf ("This Algorithm take (%.8lf ms).\n", ((double)time/CLOCKS_PER_SEC) * 1000);
     }
     else if (choice == "2")
     {
-      return 1;
-      // sort::selectionSort(arr);
-      // clock_t time = clock() - before;
-      // sort::printarr(arr);
-      // printf ("This Algorithm take (%.8lf ms).\n", ((double)time/CLOCKS_PER_SEC) * 1000);
+      sort::selectionSort(arr);
+      clock_t time = clock() - before;
+      sort::printarr(arr);
+      printf ("This Algorithm take (%.8lf ms).\n", ((double)time/CLOCKS_PER_SEC) * 1000);
     }
     else if (choice == "3")
     {

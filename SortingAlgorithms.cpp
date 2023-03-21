@@ -177,7 +177,7 @@ namespace sort
     }
   }
 
-  //------------------------**MERGE SORT**-----------------------------------
+  //-------------------------**MERGE SORT**--------------------------------------------------------------------
   template <typename T>
   void merge(T LeftArray[], T RightArray[], T Array[], int LeftArraySize, int RightArraySize, int ArraySize)
   {
@@ -235,6 +235,49 @@ namespace sort
       mergeSort(LeftArray, Middle);
       mergeSort(RightArray, ArraySize - Middle);
       merge(LeftArray, RightArray, Array, Middle, ArraySize - Middle, ArraySize);
+  }
+
+  //------------------------**INSERTION SORT**-----------------------------------
+
+  template <typename type, size_t size>
+  void insertionSort(type (&arr)[size])
+  {
+    int currentIndex, j;
+
+    for (int i = 1; i < size; i++)
+    {
+      current = arr[i];
+      j = i - 1;
+
+      while (current < arr[j] && j >= 0)
+      {
+        arr[j + 1] = arr[j];
+        j--;
+      }
+      arr[j + 1] = current;
+    }
+  }
+
+  //------------------------**SELECTION SORT**-----------------------------------
+
+  template <typename type, size_t size>
+  void selectionSort(type (&arr)[size])
+  {
+    int minindex = 0;
+  
+    for(int i = 0; i < size - 1; ++i)
+    {
+      minindex = i;
+      for (int j = i + 1; j < size; ++j)
+      {
+        if (arr[j] < arr[minindex])
+        {
+          minindex = j;
+        }
+      }
+      if (minindex != i)
+        swap(arr[minindex], arr[i]);
+    }
   }
 }
 
