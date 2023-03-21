@@ -38,9 +38,8 @@ namespace sort
     int& pivot = arr[start];
 
     int i = start; 
-    int j = i + 1;
 
-    for (int j = i + 1; j < size; ++j)
+    for (int j = i + 1; j <= end; ++j)
     {
       // If the element is lower than the pivot then swap it to arr[++i] and increment i;
       /*

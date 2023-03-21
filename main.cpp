@@ -29,8 +29,7 @@ int main()
 
   //int n = 5;
   string choice;
-  int arr[200];
-  intializeArr(arr);
+  int arr[10000];
   int size = sizeof(arr) / sizeof(arr[0]);
   int before;
 
@@ -48,6 +47,7 @@ int main()
 
   while(true)
   {
+    intializeArr(arr);
     cout << "Please Choose one of the following Sorting Algorithms to perform it:\n1-Insertion Sort\n2-Selection Sort\n3-Shell Sort\n4-Counting Sort\n5-Bubble Sort\n6-Merge Sort\n7-Quick Sort\nEnter a number from 1 to 7 or Enter 0 to Exit:\n=>";
     // Getting the input from the user
     getline(cin, choice);
