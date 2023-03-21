@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <time.h>
-
+#define ll long long
 using namespace std;
 
 namespace sort
@@ -238,45 +238,31 @@ namespace sort
 
   //------------------------**INSERTION SORT**-----------------------------------
 
-  template <typename type, size_t size>
-  void insertionSort(type (&arr)[size])
-  {
-    int currentIndex, j, current;
-
-    for (int i = 1; i < size; i++)
-    {
-      current = arr[i];
-      j = i - 1;
-
-      while (current < arr[j] && j >= 0)
-      {
-        arr[j + 1] = arr[j];
-        j--;
+  template<typename T>
+  void insertionSort(T arr[],ll size){
+      for(int i = 1; i < size;i++){
+          T key = arr[i];
+          int j = i - 1;
+          while(j >= 0 && key < arr[j]){
+              arr[j+1] = arr[j];
+              j--;
+          }
+          arr[j+1] = key;
       }
-      arr[j + 1] = current;
-    }
   }
 
   //------------------------**SELECTION SORT**-----------------------------------
 
-  template <typename type, size_t size>
-  void selectionSort(type (&arr)[size])
-  {
-    int minindex = 0;
-  
-    for(int i = 0; i < size - 1; ++i)
-    {
-      minindex = i;
-      for (int j = i + 1; j < size; ++j)
-      {
-        if (arr[j] < arr[minindex])
-        {
-          minindex = j;
-        }
+  template<typename T>
+  void selectionSort(T arr[],ll size){
+      // 50 5 4 9 6 8
+      for(size_t i = 0;i < size-1;i++){
+          ll mn = i;
+          for(size_t j = i+1; j < size;j++){
+              if(arr[j] < arr[mn]){mn = j;}
+          }
+          swap(arr[mn], arr[i]);
       }
-      if (minindex != i)
-        swap(arr[minindex], arr[i]);
-    }
   }
 }
 

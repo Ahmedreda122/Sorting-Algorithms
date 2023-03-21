@@ -61,14 +61,14 @@ int main()
     before = clock();
     if (choice == "1")
     {
-      sort::insertionSort(arr);
+      sort::insertionSort(arr, size);
       clock_t time = clock() - before;
       sort::printarr(arr);
       printf ("This Algorithm take (%.8lf ms).\n", ((double)time/CLOCKS_PER_SEC) * 1000);
     }
     else if (choice == "2")
     {
-      sort::selectionSort(arr);
+      sort::selectionSort(arr, size);
       clock_t time = clock() - before;
       sort::printarr(arr);
       printf ("This Algorithm take (%.8lf ms).\n", ((double)time/CLOCKS_PER_SEC) * 1000);
